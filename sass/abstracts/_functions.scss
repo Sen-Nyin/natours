@@ -1,0 +1,3 @@
+@function floatgrid-colcalc($colspan, $maxcol) {
+    @return calc(#{$colspan} * (100% - ((#{$maxcol} - 1) * #{$gutter-h})) / #{$maxcol} + ((#{$colspan} - 1) * #{$gutter-h}));
+}
