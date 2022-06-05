@@ -1,0 +1,174 @@
+.navigation {
+    &__checkbox {
+        // Hide the checkbox - can be clicked via label.
+        display: none;
+    }
+
+
+
+    &__button {
+        background-color: $color-white;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        z-index: 1002;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    // Green background hidden behind white button.
+    // this background will expand to fill the viewport when nav is clicked
+    &__background {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+
+        // behind menu buttons and nav list but above rest of page.
+        z-index: 1000;
+
+        transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    }
+
+    &__nav {
+        // Make the nav area fill the viewport
+
+        height: 100vh;
+        // fix it into position
+        position: fixed;
+        top: 0;
+        right: 0;
+        // ensure it displays above everything else.
+        z-index: 1001;
+        // Hide nav menu by default. No width already hides it
+        opacity: 0;
+        width: 0;
+
+        transition: all .8s;
+
+    }
+
+    &__list {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+        list-style: none;
+        text-align: center;
+        width: 100%;
+        transition: all .8s cubic-bezier(0.86, 0, 0.07, 1);
+        backface-visibility: hidden;
+    }
+
+    &__item {
+        margin: 1rem;
+    }
+
+    &__link {
+
+        &:link,
+        &:visited {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            // Create background that is transparent 50% and white 50%, angled
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+
+            // bg size to 230% so that transparent half of bg covers button. The 30% accounts for the angle.
+            background-size: 230%;
+            transition: all .4s;
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(1rem);
+        }
+
+    }
+
+    &__checkbox:checked~&__background {
+        transform: scale(100);
+    }
+
+    &__checkbox:checked~&__nav {
+        width: 100%;
+        opacity: 1;
+    }
+
+    &__checkbox:checked~&__nav &__list {
+        top: 50%;
+        right: 50%;
+    }
+
+
+    // ICON
+
+    &__icon {
+        position: relative;
+        margin-top: 3.5rem;
+
+
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s ease;
+        }
+
+        &::before {
+            top: -.8rem;
+        }
+
+        &::after {
+            top: .8rem;
+        }
+    }
+
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
+
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    &__checkbox:checked+&__button &__icon {
+        background-color: transparent;
+    }
+
+    &__checkbox:checked+&__button &__icon::before {
+        transform: rotate(135deg);
+        top:0;
+    }
+
+    &__checkbox:checked+&__button &__icon::after {
+        transform: rotate(-135deg);
+        top: 0;
+    }
+}
