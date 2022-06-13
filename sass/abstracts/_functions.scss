@@ -1,3 +1,13 @@
+@use "sass:math";
+
+
 @function floatgrid-colcalc($colspan, $maxcol) {
     @return calc(#{$colspan} * (100% - ((#{$maxcol} - 1) * #{$gutter-h})) / #{$maxcol} + ((#{$colspan} - 1) * #{$gutter-h}));
+}
+
+
+
+@function calc-vp-em($vppx) {
+    $em: math.div($vppx, 16);
+    @return $em * 1em;
 }

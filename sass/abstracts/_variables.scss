@@ -28,3 +28,18 @@ $default-font-size: 1.6rem;
 $grid-width: 114rem;
 $gutter-v: 8rem;
 $gutter-h: 6rem;
+
+
+// MEDIA Q
+
+$mobile-base: 600; // max width
+$tablet-p-base: 900; // max width
+$tablet-l-base: 1200; // max width
+$laptop-base: 1799; // max width
+$desktop-max: 10000; // min width
+
+$mobile: ("min": 0, "max": calc-vp-em($mobile-base), );
+$tablet-port: ("min": map-get($mobile, "max") + 1em, "max": calc-vp-em($tablet-p-base), );
+$tablet-land: ("min": map-get($tablet-port, "max") + 1em, "max": calc-vp-em($tablet-l-base), );
+$laptop: ("min": map-get($tablet-land, "max") + 1em, "max": calc-vp-em($laptop-base), );
+$desktop: ("min": map-get($laptop, "max") + 1em, "max": calc-vp-em($desktop-max), );
